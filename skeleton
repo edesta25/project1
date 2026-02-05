@@ -1,0 +1,4 @@
+mkdir jwks-server
+cd jwks-server
+go mod init example.com/jwks-server
+mkdir -p cmd/server internal/jwks internal/httpapi internal/auth
