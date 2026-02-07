@@ -20,7 +20,6 @@ func GenerateRSAKeyPair(bits int, expires time.Time) (*KeyPair, error) {
 		return nil, err
 	}
 
-	// Create a random kid (16 bytes hex) - good enough for assignment
 	kidBytes := make([]byte, 16)
 	if _, err := rand.Read(kidBytes); err != nil {
 		return nil, err
