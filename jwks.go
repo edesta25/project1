@@ -12,9 +12,9 @@ type JWKS struct {
 }
 
 type JWK struct {
-	Kty string `json:"kty"` // "RSA"
-	Use string `json:"use"` // "sig"
-	Alg string `json:"alg"` // "RS256"
+	Kty string `json:"kty"` 
+	Use string `json:"use"` 
+	Alg string `json:"alg"` 
 	KID string `json:"kid"`
 	N   string `json:"n"`
 	E   string `json:"e"`
@@ -38,8 +38,6 @@ func (s *Service) BuildJWKS() ([]byte, error) {
 	if !s.ActiveKey.IsExpired(now) {
 		keys = append(keys, rsaPublicKeyToJWK(s.ActiveKey.KID, s.ActiveKey.Pub))
 	}
-	// IMPORTANT: do NOT include expired keys in JWKS response
-	// per assignment requirement: "Only serve keys that have not expired."
 
 	jwks := JWKS{Keys: keys}
 	return json.Marshal(jwks)
